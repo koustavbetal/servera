@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+    
+    <ros2_control name="GazeboSimSystem" type="system">
+        <hardware>
+            <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+            <param name="calculate_dynamics">true</param>
+        </hardware>
+        
+        <!-- Left wheel joint -->
+        <joint name="left_wheel_joint">
+            <command_interface name="velocity">
+            <param name="min">-10</param>
+            <param name="max">10</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+        
+        <!-- Right wheel joint -->
+        <joint name="right_wheel_joint">
+            <command_interface name="velocity">
+            <param name="min">-10</param>
+            <param name="max">10</param>
+            </command_interface>
+            <state_interface name="position"/>
+            <state_interface name="velocity"/>
+        </joint>
+    </ros2_control>
+  
+</robot>
+
+
+<!-- command_interface is similar to feed-forward; & 
+     state_interface is similar to feed_backward -->
+
+
+<!-- This file is to be used only when we do not have the real hardware and using with gz only! 
+ when we do have the hardware then we need the custom hardwares_interfaces, ie "mock controllers"-->
+
+<!-- ## **Quick Decision Tree:**
+```
+Are you using Gazebo physics simulation?
+├─ YES → Use gz_ros2_plugin + GazeboSimSystem + NO controller_manager node
+└─ NO → Are you on real hardware?
+    ├─ YES → Use real hardware plugin + YES controller_manager node
+    └─ NO (just testing) → Use mock_components + YES controller_manager node -->

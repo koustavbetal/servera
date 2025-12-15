@@ -1,0 +1,17 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <gazebo>
+         <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system">
+            <!-- Point to your ros2_control configuration -->
+            <parameters>$(find servera_description)/config/ros2_controller.yaml</parameters>
+            <controller_manager_prefix_node_name>controller_manager</controller_manager_prefix_node_name>
+            <ros>
+            <namespace></namespace>
+            </ros>
+        </plugin>
+    </gazebo>
+
+</robot>
+
+
+<!-- working fine -->

@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Servera">
+
+    <!-- reference taken from: https://github.com/linorobot/linorobot2/tree/jazzy -->
+     
+    <xacro:include filename="$(find servera_description)/hw_urdf/servera_properties.xacro"/>  <!-- All the dimensions | Integral urdf -->
+    <xacro:include filename="$(find servera_description)/hw_urdf/solid_bodies.xacro"/>  <!-- All the definitions of the primitive bodies| Integral urdf -->
+    <xacro:include filename="$(find servera_description)/hw_urdf/material.xacro"/>  <!-- All the meterial list | consemtics -->
+    <xacro:include filename="$(find servera_description)/hw_urdf/mock-hardware_ros2_control.xacro"/>  <!-- hw_interface for ros2_control -->
+    <xacro:include filename="$(find servera_description)/hw_urdf/hw_lidar.xacro"/>  <!-- lidar definition -->
+
+
+    <xacro:base 
+        length="${base_length}" 
+        width="${base_width}" 
+        height="${base_height}" 
+        mass="${base_mass}"
+        wheel_radius="${wheel_radius}"
+        wheel_pos_z="${wheel_pos_z}"
+        mesh_file=""
+    />
+
+    <xacro:wheel 
+        side="left"
+        radius="${wheel_radius}" 
+        width="${wheel_width}" 
+        pos_x="${wheel_pos_x}" 
+        pos_y="${wheel_pos_y}" 
+        pos_z="${wheel_pos_z}" 
+        mass="${wheel_mass}"
+        mesh_file=""
+    />
+
+    <xacro:wheel 
+        side="right"
+        radius="${wheel_radius}" 
+        width="${wheel_width}" 
+        pos_x="${wheel_pos_x}" 
+        pos_y="${-wheel_pos_y}" 
+        pos_z="${wheel_pos_z}" 
+        mass="${wheel_mass}"
+        mesh_file=""
+    />
+
+    <xacro:lidar 
+        frame_id="lidar_link" > 
+        <origin xyz="0.0 0.0 ${base_height}" rpy="0 0 0"/>
+    </xacro:lidar>
+
+    <xacro:caster_wheel 
+      side="right"
+      mass="0.01"
+      base_length="${base_length}" 
+      base_width="${base_width}" 
+      wheel_radius="${wheel_radius}" 
+      wheel_pos_z="${wheel_pos_z}" 
+    />
+
+    <xacro:caster_wheel 
+      side="left"
+      mass="0.01"
+      base_length="${base_length}"
+      base_width="${base_width}" 
+      wheel_radius="${wheel_radius}" 
+      wheel_pos_z="${wheel_pos_z}" 
+    />
+</robot>

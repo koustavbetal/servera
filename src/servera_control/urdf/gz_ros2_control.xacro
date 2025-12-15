@@ -1,0 +1,18 @@
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+    <gazebo>
+         <plugin name="gz_ros2_control::GazeboSimROS2ControlPlugin" filename="libgz_ros2_control-system">
+            <!-- Point to your ros2_control configuration -->
+            <parameters>$(find servera_control)/config/ros2_controller.yaml</parameters>
+            <controller_manager_prefix_node_name>controller_manager</controller_manager_prefix_node_name>
+            <!-- <ros>
+            <namespace></namespace>
+            </ros> -->
+        </plugin>
+    </gazebo>
+
+</robot>
+
+<!-- This file is to be used only when we do not have the real hardware and using with gz only! -->
+
+<!-- working fine -->
