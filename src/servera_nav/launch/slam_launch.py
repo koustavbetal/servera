@@ -47,7 +47,7 @@ def generate_launch_description():
     configured_params = ParameterFile(
         RewrittenYaml(
             source_file=params_file,
-            root_key=namespace,
+            root_key=namespace, 
             param_rewrites={},
             convert_types=True,
         ),

@@ -17,7 +17,6 @@ def generate_launch_description():
 
 
     bridge_path = PathJoinSubstitution([servera_description_share, 'config', 'gz_bridge.yaml'])
-    # controller_path = PathJoinSubstitution([servera_control_share, 'config', 'gz_bridge.yaml'])
     world_file = PathJoinSubstitution([servera_description_share, "worlds", "industrial-warehouse.sdf"])
     urdf_path = PathJoinSubstitution([servera_control_share, 'urdf', 'servera.urdf.xacro'])
     # rviz_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'rviz_slam.rviz'])
