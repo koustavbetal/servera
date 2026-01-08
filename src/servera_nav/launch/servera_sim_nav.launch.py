@@ -114,5 +114,6 @@ def generate_launch_description():
     ld.add_action(load_joint_state_broadcaster)
     ld.add_action(rviz)
     ld.add_action(nav2_bringup)
+    
 
     return ld

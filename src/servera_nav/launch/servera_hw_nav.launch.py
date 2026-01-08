@@ -17,10 +17,11 @@ def generate_launch_description():
 
 
     urdf_path = PathJoinSubstitution([servera_description_share, 'hw_urdf', 'servera_hw.urdf.xacro'])
-    # rviz_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'nav2_default_view.rviz'])
-    rviz_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'rviz_slam.rviz'])    
+    rviz_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'nav2_default_view.rviz'])
+    # rviz_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'rviz_slam.rviz'])    
     ros2_control_config_path = PathJoinSubstitution([servera_control_share, 'config', 'ros2_controller.yaml'])
-    nav2_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'nav2_params.yaml'])
+    nav2_config_path = PathJoinSubstitution([servera_nav_share, 'config', 'nav2_hw_params.yaml'])
+    map_yaml= PathJoinSubstitution([servera_description_share, 'maps', 'my_map.yaml'])
 
     
     robot_description = ParameterValue(
@@ -99,10 +100,11 @@ def generate_launch_description():
     )
     nav2_bringup = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
-            PathJoinSubstitution([servera_nav_share, "launch", "bringup_launch.py"])]),
+            PathJoinSubstitution([servera_nav_share, "launch", "bringup_hw_launch.py"])]),
                 launch_arguments={
-                    'use_sim_time': 'true',
+                    'use_sim_time': 'false',
                     'params_file': nav2_config_path,
+                    'map': map_yaml,
                 }.items()
     )
 
@@ -121,11 +123,11 @@ def generate_launch_description():
     # ld.add_action(static_tf)
     ld.add_action(controller_manager)
     ld.add_action(lidar_node)
-    ld.add_action(load_diff_drive)
+    # ld.add_action(load_diff_drive)
     ld.add_action(load_joint_state_broadcaster)
     ld.add_action(rviz)
-    ld.add_action(laser_odom)
-    # ld.add_action(nav2_bringup) #bringup and slam launch should not be run together, bringup is for navigation with map, slam is for creating the map. This yet has not been tested properly.
-    ld.add_action(slam_launch)
+    # ld.add_action(laser_odom)
+    ld.add_action(nav2_bringup) #bringup and slam launch should not be run together, bringup is for navigation with map, slam is for creating the map. This yet has not been tested properly.
+    # ld.add_action(slam_launch)
 
     return ld
