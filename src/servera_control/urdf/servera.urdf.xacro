@@ -50,7 +50,7 @@
         max_range="10.0" 
         frame_id="lidar_link" 
         topic_name="scan">  <!-- Do not use "/" for topic names, ie "/scan"; instead use "scan"-->
-        <origin xyz="0.0 0.0 ${base_height}" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 ${base_height-wheel_radius}" rpy="0 0 0"/>
     </xacro:lidar>
 
     <xacro:caster_wheel 

@@ -80,10 +80,10 @@ slam_toolbox:
     # General Parameters
     use_scan_matching: true #true
     use_scan_barycenter: true
-    minimum_travel_distance: 0.5 #changed from 0.5 (default)
-    minimum_travel_heading: 0.5 #changed from 0.5 (default)
-    check_min_dist_and_heading_precisely: false
-    scan_buffer_size: 10
+    minimum_travel_distance: 0.2 #changed from 0.5 (default)
+    minimum_travel_heading: 0.3 #changed from 0.5 (default)
+    check_min_dist_and_heading_precisely: true # default is false
+    scan_buffer_size: 30 #changed from 10
     scan_buffer_maximum_scan_distance: 10.0
     link_match_minimum_response_fine: 0.1  
     link_scan_maximum_distance: 1.5
@@ -115,7 +115,7 @@ slam_toolbox:
     minimum_distance_penalty: 0.5
     use_response_expansion: true
     min_pass_through: 2
-    occupancy_threshold: 0.1
+    occupancy_threshold: 0.65 #changed from 0.1
 
 bt_navigator:
   ros__parameters:

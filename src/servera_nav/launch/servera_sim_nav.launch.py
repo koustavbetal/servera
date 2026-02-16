@@ -1,7 +1,7 @@
 from launch import LaunchDescription
 
 from launch.substitutions import FindExecutable, PathJoinSubstitution, LaunchConfiguration , Command  # noqa: F401
-from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription # noqa: F401
+from launch.actions import DeclareLaunchArgument, IncludeLaunchDescription, ExecuteProcess, TimerAction # noqa: F401
 
 from launch_ros.actions import Node
 from launch_ros.substitutions import FindPackageShare
@@ -103,6 +103,24 @@ def generate_launch_description():
                 }.items()
     )
 
+    initial_pose_node = TimerAction(
+        period=2.0,  # wait 2 seconds before executing
+        actions=[
+            ExecuteProcess(
+                cmd=[
+                    'ros2', 'topic', 'pub', '--once', '/initialpose',
+                    'geometry_msgs/PoseWithCovarianceStamped',
+                    "{header: {frame_id: map}, pose: {pose: {position: {x: 0.022234320640563965, "
+                    "y: 0.029873132705688477, z: 0.0}, orientation: {x: 0.0, y: 0.0, "
+                    "z: -0.00040038349153970887, w: 0.9999999198465266}}, "
+                    "covariance: [0.25,0,0,0,0,0,0,0.25,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0.0685389]}}"
+                ],
+                output='screen'
+            )
+        ]
+    )
+
+
 
     ld = LaunchDescription()
     ld.add_action(robot_state_publisher)
@@ -114,6 +132,7 @@ def generate_launch_description():
     ld.add_action(load_joint_state_broadcaster)
     ld.add_action(rviz)
     ld.add_action(nav2_bringup)
+    ld.add_action(initial_pose_node)
     
 
     return ld

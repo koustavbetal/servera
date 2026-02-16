@@ -60,8 +60,8 @@
         <topic>${topic_name}</topic>   <!-- Do not use "/" for topic names, ie "/scan"; instead use "scan"-->
         <!-- <frame_id>${frame_id}</frame_id> -->
         <update_rate>${update_rate}</update_rate>
-        <always_on>1</always_on>
-        <visualize>1</visualize>
+        <always_on>true</always_on>
+        <visualize>true</visualize>
         <lidar>
           <scan>
             <horizontal>
@@ -70,6 +70,12 @@
               <min_angle>${min_angle}</min_angle>
               <max_angle>${max_angle}</max_angle>
             </horizontal>
+            <vertical>
+              <samples>1</samples>
+              <resolution>1</resolution>
+              <min_angle>0.0</min_angle>
+              <max_angle>0.0</max_angle>
+            </vertical>
           </scan>
           <range>
             <min>${min_range}</min>
