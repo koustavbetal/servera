@@ -1,0 +1,5 @@
+string   device           # "vacuum" | "scrubber"
+bool     state            # true = ON, false = OFF
+---
+bool     success
+string   message

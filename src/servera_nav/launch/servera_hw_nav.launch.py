@@ -78,26 +78,26 @@ def generate_launch_description():
         arguments=["joint_state_broadcaster", "--controller-manager", "/controller_manager"],
     )
 
-    load_diff_drive = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
-    )
+    # load_diff_drive = Node(
+    #     package="controller_manager",
+    #     executable="spawner",
+    #     arguments=["diff_drive_controller", "--controller-manager", "/controller_manager"],
+    # )
 
-    laser_odom = Node(
-        package='rf2o_laser_odometry',
-        executable='rf2o_laser_odometry_node',
-        name='rf2o_laser_odometry',
-        parameters=[{
-            'laser_scan_topic' : '/scan',
-            'odom_topic' : '/odom',
-            'base_frame_id' : 'base_footprint',
-            'odom_frame_id' : 'odom',
-            'publish_tf' : True,
-            'init_pose_from_topic' : '',
-            'freq' : 10.0}],
-        output='screen'
-    )
+    # laser_odom = Node(
+    #     package='rf2o_laser_odometry',
+    #     executable='rf2o_laser_odometry_node',
+    #     name='rf2o_laser_odometry',
+    #     parameters=[{
+    #         'laser_scan_topic' : '/scan',
+    #         'odom_topic' : '/odom',
+    #         'base_frame_id' : 'base_footprint',
+    #         'odom_frame_id' : 'odom',
+    #         'publish_tf' : True,
+    #         'init_pose_from_topic' : '',
+    #         'freq' : 10.0}],
+    #     output='screen'
+    # )
     nav2_bringup = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([
             PathJoinSubstitution([servera_nav_share, "launch", "bringup_hw_launch.py"])]),

@@ -7,7 +7,7 @@
     <xacro:include filename="$(find servera_description)/urdf/solid_bodies.xacro"/>  <!-- All the definitions of the primitive bodies| Integral urdf -->
     <xacro:include filename="$(find servera_description)/urdf/material.xacro"/>  <!-- All the meterial list | consemtics -->
     <xacro:include filename="$(find servera_description)/urdf/gz_plugins.xacro"/>  <!-- gz tags | gz integrartion -->
-
+    <xacro:include filename="$(find servera_description)/urdf/orbbec_gem336l.xacro"/>
 
     <xacro:base 
         length="${base_length}" 
@@ -50,7 +50,7 @@
         max_range="10.0" 
         frame_id="lidar_link" 
         topic_name="/scan">
-        <origin xyz="0.0 0.0 ${base_height}" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 ${base_height-wheel_radius+0.025}" rpy="0 0 0"/>
     </xacro:lidar>
 
     <xacro:caster_wheel 
@@ -70,4 +70,10 @@
       wheel_radius="${wheel_radius}" 
       wheel_pos_z="${wheel_pos_z}" 
     />
+
+    <xacro:gemini_336l 
+    parent="base_link"
+    xyz="0.62 0.035 0.3"
+    rpy="0 0 0"/>
+
 </robot>

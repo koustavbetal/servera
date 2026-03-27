@@ -1,0 +1,13 @@
+# Goal
+bool     extend           # true = extend, false = retract
+uint32   duration_ms      # 0 = use firmware default (16000)
+---
+# Result
+bool     success
+bool     final_state      # true = extended, false = retracted
+string   message
+---
+# Feedback
+uint32   elapsed_ms
+uint32   duration_ms
+bool     moving

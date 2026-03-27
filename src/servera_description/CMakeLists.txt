@@ -20,7 +20,7 @@ ament_target_dependencies(
 )
 
 install(
-  DIRECTORY urdf launch config worlds maps hw_urdf
+  DIRECTORY urdf launch config worlds maps hw_urdf meshes
   DESTINATION share/${PROJECT_NAME}
 )
 

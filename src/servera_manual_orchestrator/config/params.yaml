@@ -1,0 +1,6 @@
+auroclean_orchestrator:
+  ros__parameters:
+    scrubber_duration_ms: 15000   # 15s to reach ground
+    vacuum_duration_ms:   12000   # 12s to reach ground
+    motor_start_dwell_ms: 3000    # wait after extend before motor ON
+    motor_stop_dwell_ms:  5000    # wait after motor OFF before retract
